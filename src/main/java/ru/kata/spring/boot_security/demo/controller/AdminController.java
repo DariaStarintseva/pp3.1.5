@@ -20,25 +20,21 @@ public class AdminController {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<User> getOneUser(@PathVariable("id") Long id) {
         User user = userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
     @PostMapping()
     public ResponseEntity<HttpStatus> addUser (@RequestBody User user) {
         userService.addUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") Long id) {
         userService.removeUser(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
     @PatchMapping("/{id}")
     public ResponseEntity<HttpStatus> updateUser(@RequestBody User user) {
         userService.updateUser(user);
