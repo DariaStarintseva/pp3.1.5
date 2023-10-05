@@ -8,14 +8,14 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/admin/users")
+@RequestMapping("/api/admin")
 public class AdminController {
 
     private final UserService userService;
     public AdminController(UserService userService) {
         this.userService = userService;
     }
-    @GetMapping
+    @GetMapping("/users")
     public ResponseEntity<List<User>> showAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
@@ -25,7 +25,7 @@ public class AdminController {
         User user = userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-    @PostMapping()
+    @PostMapping("/users")
     public ResponseEntity<HttpStatus> addUser (@RequestBody User user) {
         userService.addUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
